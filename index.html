@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+
+<!-- Created by Laurent Berge, first version 26-01-2022 -->
+<!-- Fall 2022: added the game -->
+
+
+<html>
+
+<head>
+
+  <title>Learn selectors</title>
+
+  <style>
+
+    @import url(https://fonts.googleapis.com/css?family=Maven+Pro:300,400,500,600,700|Fira+Sans:400,400i,500,500i,600,600i,700,700i,800,800i|Source+Code+Pro:500);
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Poor+Story&display=swap');
+
+    /**************
+    *** GENERAL ***
+    ***************/
+
+    :root {
+      --color-bg: MintCream;
+      --color-link: palevioletred;
+    }
+
+    body {
+      font-family: "Fira Sans", sans-serif;
+      font-size: larger;
+      padding: 1em;
+      max-width: 1500px;
+      min-width: 1000px;
+      margin: auto;
+
+      background-color: var(--color-bg);
+      background-image: repeating-linear-gradient(rgb(255, 255, 255), rgba(255, 255, 255, 0.911) 100%),
+      url(data:image/png;base64,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);
+    }
+
+    /***************
+    *** TOP BAND ***
+    ****************/
+
+    #info-type {
+      display: inline-block;
+    }
+
+    #learn-container {
+      /*display: table;*/
+      /*border: 3px solid firebrick;*/
+      margin: -20px;
+      padding: 20px;
+      background-color: var(--color-bg);
+      background-image: repeating-linear-gradient(rgba(171, 212, 207, 0.815), rgba(255, 255, 255, 0.911) 100%),
+      url(data:image/png;base64,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);
+    }
+
+    #learn-table {
+      display: table;
+    }
+
+    #learn-box {
+      display: block;
+      padding: 2px 5px 5px;
+      width: 500px;
+      border-radius: 5px;
+      /*background-color: #9BB9BF;
+      box-shadow: 0px 0px 3px 2px #70898C;*/
+      /*float: left;*/
+    }
+
+    #learn-box div {
+      line-height: 30px;
+    }
+
+    #play-box {
+      padding-left: 20px;
+      display: table-cell;
+      vertical-align: top;
+      height: 150px;
+    }
+
+    #play-info {
+      display: block;
+      /* I delay putting this to none since I need sizes */
+      /* display: none; */
+      opacity: 0;
+    }
+
+    #winning-text {
+      display: inline-block;
+      font-family: Caveat, serif;
+      font-size: 1.8rem;
+      animation: appear-win 1.1s ease-out;
+    }
+
+    .win-container {
+      display: inline-block;
+      margin-right: 15px;
+      height: 50px;
+    }
+
+    .container {
+      margin: auto;
+      max-width: 1500px;
+    }
+
+    input[type=text] {
+      border-radius: 5px;
+      font-size: 25px;
+      font-family: "Maven Pro", monospace;
+      width: 400px;
+    }
+
+    .text-btn:hover {
+      cursor: pointer;
+    }
+
+    #play-next {
+      display: inline-block;
+      animation: appear 0.8s ease-out;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+    }
+
+    @keyframes appear-win {
+      from {
+        opacity: 0;
+        transform: scale(5);
+      }
+    }
+
+    a, 	a:visited {
+      /*font-weight: bold;*/
+      color: var(--color-link);
+    }
+
+    footer {
+      text-align: right;
+      position: fixed;
+      bottom: 0;
+      padding: 0 50px;
+      width: calc(100% - 100px);
+      height: 50px;
+      background-color: rgba(255, 255, 255, 0.911);
+    }
+
+    .cursif {
+      font-family: Poor Story, cursif, serif;
+      font-size: 1.5rem;
+    }
+
+    a.lrberge,  a.lrberge:visited {
+      color: black;
+      text-decoration: none;
+    }
+
+    a.lrberge:hover,  a.lrberge:hover:visited {
+      cursor: pointer;
+      color: var(--color-link);
+      transition: all 0.3s;
+    }
+
+    /****************
+    *** TEXT/CODE ***
+    *****************/
+
+    pre {
+      font-family: "Source Code Pro", monospace;
+      font-size: medium;
+    }
+
+    q {
+      font-style: italic;
+    }
+
+    #content {
+      float: left;
+      width: 40%;
+    }
+
+    #code {
+      float: right;
+      width: 56%;
+      overflow-x: auto;
+      padding-bottom: 50px;
+    }
+
+    .target {
+      border: 3px solid firebrick;
+    }
+
+    .selected {
+      background-color: rgba(48, 148, 148, 0.459);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  
+
+  <div id="learn-container">
+    <h3> Learn CSS selectors and XPath</h3>
+
+    <footer>
+      <p> <span class="cursif">Created by</span> <a class="lrberge" href="https://sites.google.com/site/laurentrberge/home">Laurent R. Berg&eacute;</a> </p>
+    </footer>
+
+    <p>Reference: <a href="https://www.w3schools.com/cssref/css_selectors.php">CSS</a>, <a href="https://www.w3schools.com/xml/xpath_syntax.asp">XPath</a>
+      (<a href="https://www.w3schools.com/xml/xpath_axes.asp">axes</a>)
+    </p>
+
+    <div id="learn-table">
+      <div id="learn-box">
+        <div>
+          Select a type of selector: <br/>
+          <input type="radio" id="radio_css" value="CSS" name="select" checked> <label for="radio_css">CSS</label>
+          <input type="radio" id="radio_xpath" value="xpath" name="select"> <label for="radio_xpath">XPath</label>
+        </div>
+    
+        <label id="info-type">Selector: </label> <input id="text-css-xpath" type="text"> </input>
+
+      </div>
+    
+      <div id="play-box">
+        <p id="play-button" class="text-btn">	&#9989; Start playing</p>
+        <p id="play-info">
+          <span class="win-container">
+            <span id="winning-text">&#127881; Yeah! </span>
+          </span>
+          <span id="play-next" class="text-btn">Next</span>
+        </p>
+      </div>
+    </div>
+  </div>  
+
+<div id="content" class="no-select">
+
+<h2>Who am I?</h2>
+
+<div class="intro">
+  <p>I'm <span class="age" id="age">34</span> and 
+    measure <span class="unit">1.70m</span>.</p>
+</div>
+
+<div class="info">
+  <div>
+    <p id="like">What I like:</p>
+    <ul>
+      <li>Barcelona</li>
+      <li>winning the Ballon d'Or every odd year</li>
+    </ul>
+    <p class="extra">I forgot to say that I like scoring over 
+      100 goals per season.</p>
+  </div>
+
+  <div>
+    <p class="dislike">What I don't like:</p>
+    <ul>
+      <li><span class="deadly-foe">Real Madrid</span></li>
+      <li>leaving the club in which I've played 
+        since <span class="age">13</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="fact">
+  <h4>Well known fact</h4>
+  <p>If you own a football jersey, my name is the most likely on your back.</p>
+  <div class="fact extra">
+      <h4>Quotes of mine</h4>
+      <p><q>It doesn't matter if I am better than Cristiano Ronaldo, 
+        all that matters is that Barcelona are better 
+        than <span class="deadly-foe">Madrid</span>.</q></p>
+      <p><q>I start early and I stay late, day after day, year after year. 
+        It took me 17 years and 114 days to become an overnight success.</q></p>
+  </div>
+</div>
+
+</div>
+
+  <div id="code"> </div>
+
+  <script>
+
+    // quotes from Messi:
+    // https://kidadl.com/articles/messi-quotes-from-the-world-famous-soccer-player
+
+    // The current age of Messi
+    let birth_date = new Date(1987, 6, 24);
+    let age_messi = Math.floor( (Date.now() - birth_date) / 365.25 / 24 / 3600 / 1000);
+    let age_span = document.querySelector("#age");
+    age_span.innerHTML = age_messi.toString();
+
+    // we block the selection of the non-text elements (upper band)
+    function noSelect(main_element) {
+      main_element.classList.add("no-select");
+      for (el of main_element.children) {
+        noSelect(el);
+      }
+    }
+
+    let div_learn = document.querySelector("#learn-container");
+    noSelect(div_learn);
+
+    // recreating the code
+    let div_content = document.querySelector("#content");
+    let div_code = document.querySelector("#code");
+
+    let code_node = document.createTextNode(div_content.innerHTML);
+    let pre_code = document.createElement("pre");
+    pre_code.appendChild(code_node);
+    div_code.appendChild(pre_code);
+    noSelect(div_code);
+
+    var check_css = document.querySelector("#radio_css");
+
+    // we fix the size of win-container bc we'll display=none what it contains
+    let win_container = document.querySelector(".win-container");
+    let win_text = document.querySelector("#winning-text");
+    let	win_width = parseInt(win_text.clientWidth);
+    win_container.style.width = (win_width).toString() + "px";
+
+    let	win_height = parseInt(win_text.clientHeight);
+    win_container.style.height = (win_height + 5).toString() + "px";
+
+    let play_info = document.querySelector("#play-info");
+    play_info.style.display = "none";
+    play_info.style.opacity = 1;
+
+    // game related code
+    let is_playing = false;
+
+    function genInt(max) {
+      return Math.floor(Math.random() * max) + 1;
+    }
+
+    function cleanClass(className){
+      // Cleans the className from all elements 
+      let all_elem_select = document.querySelectorAll("." + className);
+      for (el of all_elem_select) {
+        el.classList.remove(className);
+      }
+    }
+
+    function recTargetElement(element, n_done, n) {
+      // unnests the all html tree and "targets" the nth element
+
+      // the first loop corresponds to the very entry level of this function
+      // the result of the query selector which is a list of elements
+      if(element.length > 0){
+        for(el of element){
+          n_done = recTargetElement(el, n_done, n);
+          if(n_done == n){
+            return n;
+          }
+        }
+
+        return n_done;
+      }
+
+      // "normal" loop => consists of one element
+      n_done = n_done + 1;
+
+      if(n_done == n){
+        element.classList.add("target");
+        return n;
+      }
+
+      // we loop into the element
+      for(el of element.children){
+        n_done = recTargetElement(el, n_done, n);
+        if(n_done == n){
+          return n;
+        }
+      }
+
+      return n_done;
+    }
+
+    // number of elements in the contents
+    let N_MAX = recTargetElement(div_content.children, 0, 100000);
+    console.log("N_MAX = " + N_MAX.toString());
+
+    function targetRandomElement() {
+
+      // we clear the winning sign
+      document.querySelector("#winning-text").style.display = "none";
+
+      // we clean all targets
+      cleanClass("target");
+
+      // we clean the text
+      input_css_xpath.value = "";
+      cleanClass("selected");
+
+      let all_elem =  document.querySelector("#content").children;
+      let n = genInt(N_MAX);
+
+      let n_done = 0;
+      while(n_done < n){
+        // the targeting is done within the function
+        n_done = recTargetElement(all_elem, n_done, n);
+      }
+    }
+
+    function runCssXpath() {
+
+      console.log(input_css_xpath.value);
+
+      cleanClass("selected");
+
+      let all_elem = [];
+
+      try {
+
+        if (check_css.checked) {
+
+          all_elem = div_content.querySelectorAll(input_css_xpath.value);
+
+        } else {
+          let all_nodes = document.evaluate(input_css_xpath.value, div_content, null, 
+                XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
+
+          let current_node = all_nodes.iterateNext();
+          while (current_node) {
+            console.log(current_node);
+            if (current_node instanceof HTMLElement) {
+              all_elem.push(current_node);
+            }            
+            current_node = all_nodes.iterateNext();
+          }
+        }
+
+        for (el of all_elem) {
+          if (!el.classList.contains("no-select")) {
+            el.classList.add("selected");
+          }
+        }
+
+      } catch (e) {
+        console.log("XPATH ou CSS non valide");
+        console.log(e);
+      }
+
+      if(is_playing){
+        let ok = false;
+        if(all_elem.length == 1){
+          let el_target = document.querySelector(".target");
+          if(all_elem[0] == el_target){
+            ok = true;
+            console.log("you win!");
+            document.querySelector("#winning-text").style.display = "inline-block";
+          }
+        } 
+        
+        if(!ok){
+          document.querySelector("#winning-text").style.display = "none";
+        }
+      }
+
+
+    }
+
+    function togglePlaying() {
+      if(is_playing){
+        // we turn off playing
+        is_playing = false;
+        document.querySelector("#play-info").style.display = "none";
+        cleanClass("target");
+        document.querySelector("#play-button").innerHTML = "&#9989; Start playing";
+      } else {
+        // we turn on playing
+        is_playing = true;
+        document.querySelector("#play-info").style.display = "block";
+        targetRandomElement();
+        document.querySelector("#play-button").innerHTML = "&#10060; Stop playing";
+      }
+    }
+
+    let input_css_xpath = document.getElementById("text-css-xpath");
+
+    input_css_xpath.addEventListener("keyup", runCssXpath);
+
+    check_css.addEventListener("change", runCssXpath);
+    document.querySelector("#radio_xpath").addEventListener("change", runCssXpath);
+
+    // the game
+    document.querySelector("#play-next").addEventListener("click", targetRandomElement);
+    document.querySelector("#play-button").addEventListener("click", togglePlaying);
+
+  </script>
+
+</body>
+
+</html>
