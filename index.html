@@ -65,13 +65,10 @@
       padding: 2px 5px 5px;
       width: 500px;
       border-radius: 5px;
-      /*background-color: #9BB9BF;
-      box-shadow: 0px 0px 3px 2px #70898C;*/
-      /*float: left;*/
     }
 
     #learn-box div {
-      line-height: 30px;
+      line-height: 37px;
     }
 
     #play-box {
@@ -97,6 +94,16 @@
 
     #win-container {
       margin-right: 15px;
+      display: inline-block;
+    }
+
+    td {
+      height: 50px;
+      vertical-align: bottom;
+    }
+
+    #play-next {
+      padding-bottom: 8px;
     }
 
     .container {
@@ -207,7 +214,7 @@
   
 
   <div id="learn-container">
-    <h3> Learn CSS selectors and XPath</h3>
+    <h1> Learn CSS selectors and XPath</h1>
 
     <footer>
       <p> <span class="cursif">Created by</span> <a class="lrberge" href="https://sites.google.com/site/laurentrberge/home">Laurent R. Berg&eacute;</a> </p>
@@ -248,6 +255,7 @@
         </table>
 
       </div>
+
     </div>
   </div>  
 
@@ -339,7 +347,7 @@
     win_container.style.width = (win_width).toString() + "px";
 
     let	win_height = parseInt(win_text.clientHeight);
-    win_container.style.height = (win_height + 3).toString() + "px";
+    win_container.style.height = (win_height + 3).toString() + "px"; 
 
     console.log("win height: " + win_height.toString());
 
@@ -366,7 +374,7 @@
       // unnests the all html tree and "targets" the nth element
 
       // the first loop corresponds to the very entry level of this function
-      // the result of the query selector which is a list of elements
+      // the result of the querySelectorAll which is a list of elements
       if(element.length > 0){
         for(el of element){
           n_done = recTargetElement(el, n_done, n);
