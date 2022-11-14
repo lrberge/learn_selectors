@@ -17,6 +17,7 @@
     max-width: 1500px;
     min-width: 1000px;
     margin: auto;
+    height: 100vh;
 
     background-color: var(--color-bg);
     background-image: repeating-linear-gradient(rgb(255, 255, 255), rgba(255, 255, 255, 0.911) 100%),
@@ -27,8 +28,9 @@
   *** TOP BAND ***
   ****************/
 
-  #info-type {
-    display: inline-block;
+  h1 {
+    margin: 0;
+    font-size: 1.5em;
   }
 
   #learn-container {
@@ -98,9 +100,14 @@
 
   input[type=text] {
     border-radius: 5px;
-    font-size: 25px;
+    font-size: 1.3em;
     font-family: "Maven Pro", monospace;
     width: 400px;
+  }
+
+  #info-type {
+    display: inline-block;
+    padding-bottom: 0.4em;
   }
 
   .text-btn:hover {
